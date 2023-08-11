@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+      {{ logo_name }} Order Placed
+{% endblock title %}
+
+
+{% block styles %}
+    <style>
+    #go-back {
+    margin: 2rem !important;
+    }
+    </style>
+
+{% endblock styles %}
+
+{% block content %}
+    <div id="go-back">
+        <a class="btn btn-outline-dark " href="{% url 'home' %}">&#x2190; Go Home</a>
+    </div>
+    <div class="d-flex aligns-items-center justify-content-center w-75 mx-auto">
+    <div class="card">
+        <div class="row">
+            <div class="col-md-4 ">
+                <img src="{% static 'images/Chef.gif' %}" class="img-fluid rounded-circle"
+                     style="border-bottom: 2rem solid gray;" alt="food image">
+            </div>
+            <div class="col-md-8">
+                <p class="card-body">
+                    <h5 class="card-title">Your order is placed</h5>
+                    <p class="card-text">Items: {{ order.get_order_items_quantity }} </p>
+                    <p class="card-text">Total: {{ order.get_order_total|floatformat:2 }}€</p>
+                   {% if not delivery %}
+                        <h5>We will deliver the order to:</h5>
+                        <p>Address: {{ delivery.address }}</p>
+                        <p>City: {{ delivery.city }}</p>
+                    {% else %}
+                        <h5>Your order is for takeaway.</h5>
+                    {% endif %}
+            </div>
+        </div>
+     </div>
+</div>
+{% endblock content %}

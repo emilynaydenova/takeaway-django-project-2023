@@ -1,0 +1,24 @@
+{# DEBUG must be False in settings #}
+{% extends 'base.html' %}
+
+
+{% block title %}
+    400 Bad Request
+{% endblock title %}
+
+
+{% block content %}
+  <div class="d-flex align-items-center justify-content-center vh-100">
+            <div class="text-center">
+                <h1 class="display-1 fw-bold">400</h1>
+                <p class="fs-3"> <span class="text-danger">Opps!</span>Bad Request</p>
+                <p class="lead">
+                    You've send a bad request.
+                  </p>
+
+                <a href="{% url 'home' %}" class="btn btn-primary">Go Home</a>
+            </div>
+        </div>
+
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{# include to show error messages in templates #}
+
+{% if form.errors %}
+    <div   style="color:#7e4706">
+        <h5>Please fix the following errors</h5>
+    {{ form.errors }}
+        <ul class="list-unstyled" >
+            {% for field in form %}
+                {% if field.errors %}
+                    {% for error in field.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+        </ul>
+        {% if form.non_field_errors %}
+             <ul class="list-unstyled">
+               {% for error in form.non_field_errors %}
+                   <li>{{ error }}</li>
+               {% endfor %}
+             </ul>
+        {% endif %}
+
+    </div>
+{% endif %}
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert {% if message.tags %} alert-{{ message.tags }}{% endif %}">{{ message|safe }}</div>
+    {% endfor %}
+{% endif %}

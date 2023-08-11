@@ -1,0 +1,153 @@
+@import "reset.css";
+@import "buttons.css";
+
+body {
+    background-color: ivory;
+    background-image: url("../images/chef1.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: Montserrat, Ariel, sans-serif;
+    cursor: pointer;
+    width: 100vw;
+    height: 100vh;
+    vertical-align: bottom;
+    text-align: center;
+}
+
+.header {
+    display: flex;
+    align-items: center; /* center vertical */
+    /* justify-content: space-between;  -> use margins for differnt apaces*/
+
+    background-color: var(--nav-bg);
+    box-shadow: 0 1px 1px 0 rgb(0 0 0 / 14%), 0 2px 1px -1px rgb(0 0 0 / 12%),
+    0 1px 3px 0 rgb(0 0 0 / 20%);
+    padding: 8px 34px;
+}
+
+
+.header .logo {
+    margin-right: auto;
+    color: var(--orange);
+    font-size: 1.5rem;
+    text-decoration: none;
+}
+
+.header .logo > i {
+    padding: 0 10px;
+}
+
+.header .search {
+    color: var(--nav-item);
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+
+/* разпределя празното пространство отдясно */
+.navigation {
+    margin-right: auto;
+    color: var(--nav-color);
+}
+ /* nav > ul */
+.navigation .list {
+    display: flex;
+    gap: 12px;
+}
+
+.nav-link  {
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+
+.nav-link:hover {
+    color: var(--orange);
+}
+
+.nav-link:focus {
+    background-color: bisque;
+    /*text-decoration: line-through;*/
+}
+
+.nav-link:active {
+  color: green;
+}
+
+#title-home {
+    color: var(--darkgreen);
+    text-align: center;
+    opacity: 0.9;
+    margin-bottom: 30px;
+    font: italic 2.5rem "Great Vibes", serif;
+}
+
+.empty-message {
+    color: var(--gray-700);
+    text-align: center;
+}
+
+.card-group-item {
+    position: relative;
+    display: block;
+    padding: 0.5rem 1rem;
+    color: ivory;
+    text-decoration: none;
+    background-color: hsla(80, 33%, 55%, 0.25);
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    font: italic 1.5em "Montserrat", serif;
+    font-weight: bold;
+    margin-top: 3rem;
+}
+
+.card-group-item-success.card-group-item-action:hover,
+.card-group-item-success.card-group-item-action:focus {
+    color: darkolivegreen;
+    background-color: lightgoldenrodyellow;
+}
+
+.fixed-site-bottom {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1030;
+}
+
+.site-footer {
+    background-color: #e3f2fd;
+    color: red;
+    padding: 0.5rem 20px;
+    text-align: right;
+}
+
+.site-footer ul.contact  {
+    color: #3498da;
+    text-align: left;
+}
+/*:link — :visited — :hover — :focus -:active*/
+.input:focus {
+    background-color: gray;
+}
+.input:placeholder-shown {
+    color: rgb(166, 38, 38);
+}
+
+.input:active{
+    background-color: red;
+}
+
+[disabled] {
+    color:darkseagreen;
+}
+
+.list-menu {
+     background-color: #e3f2fd;
+
+}
+.dropdown-item {
+    color: #0f8aec;
+}
+

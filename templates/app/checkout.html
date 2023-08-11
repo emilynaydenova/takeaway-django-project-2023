@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    {{ logo_name }} Checkout
+{% endblock title %}
+
+
+{% block styles %}
+    <link rel="stylesheet" type="text/css" href="{% static "css/checkout.css" %}">
+{% endblock styles %}
+
+
+{% block content %}
+    <div class="row justify-content-center">
+        <div id="go-back" style="margin-top:1rem;">
+            <a class="btn btn-outline-dark " href="{% url 'home' %}">&#x2190; Continue Ordering</a>
+        </div>
+        <div id="go-back">
+            <a class="btn btn-outline-dark" href="{% url 'order' %}">&#x2190; Back to Order</a>
+        </div>
+
+        <h5>Order Summary</h5>
+        <div class="col-lg-8">
+            {% if items %}
+                <table class="table  table-hover table-color">
+                    <thead class="head-color">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col" class="item-position">Item</th>
+                        <th scope="col" class="item-position">Price</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Total</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for item in items %}
+
+                        <tr>
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td class="item-position"><a href="{% url 'food details' item.product_id %}">
+                                {{ item.product.title|truncatechars:30 }}</a></td>
+                            <td>{{ item.product.price|floatformat:2 }}€</td>
+                            <td class="count">{{ item.quantity }}</td>
+                            <td>{{ item.get_total|floatformat:2 }}€</td>
+                        </tr>
+
+                    {% endfor %}
+                    </tbody>
+                    <tr class="summary-color">
+                        <td colspan="3">Summary:</td>
+                        <td>{{ order.get_order_items_quantity }}</td>
+                        <td>{{ order.get_order_total|floatformat:2 }}€</td>
+                    </tr>
+                </table>
+
+                {#            Ask  Takeaway or Delivery !!!#}
+                <form method="post" action="{% url "order checkout" order.pk %}">
+                    {% csrf_token %}
+                    {{ form }}
+                    <hr>
+                    <input class="btn btn-success" type="submit" value="Submit">
+                </form>
+            {% endif %}
+        </div>
+    </div>
+{% endblock content %}
+

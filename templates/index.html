@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}
+      {{ logo_name }} Home
+{% endblock title %}
+
+
+{% block content %}
+        <h2 id="title-home">Pick-up and Bon appétit !</h2>
+
+    <div class="row">
+
+          {% for category in categories %}
+
+            <div class="col-md mt-5">
+
+                <div class="card-group" style="height: 12rem;width: 12rem;">
+                    <a href="{% url "foods by category" %}?category={{ category.pk }}" type="submit"
+                       class="card-group-item card-group-item-action card-group-item-success cursor-na">
+
+                        {% if category.image %}
+                            <img class="card-img-top" src="{{ category.image.url }}" alt="Category image">
+                        {% else %}
+                            <img class="card-img-top" src="{% static 'images/placeholder.jpg' %}"
+                                 alt="Category image P">
+                        {% endif %}
+                         {{ category.get_title_display }}
+                    </a>
+
+                </div>
+            </div>
+        {% empty %}
+            <h2 class="empty-message">No active Categories</h2>
+        {% endfor %}
+    </div>
+
+{% endblock content %}

@@ -1,0 +1,88 @@
+/* css style for Edit Profile site */
+
+#profile {
+    display: inline-block;
+    background-color: transparent;
+    /*background-color: gray;*/
+    width: 40%;
+    margin: 10px 0;
+    min-width: 20rem;
+    min-height: 35rem;
+
+    /*overflow: auto;*/
+}
+
+#profile h2 {
+    color: darkgrey;
+    margin: 10px 0;
+    font-size: 2rem;
+    text-align: center !important;
+    cursor: none  !important;;
+}
+
+#profile h5 {
+    color: black;
+}
+
+.profile-image {
+    max-width: 200px;
+    max-height: 200px;
+    margin: 0 auto;
+    border-radius: 10%;
+    overflow: hidden;
+    cursor: none;
+}
+
+.profile-file {
+    padding-bottom: 10px;
+    margin: 0 0 auto;
+ }
+
+#profile-list {
+    padding: 10px 0 10px 0;
+    list-style: none;
+    margin: 10px 10px 10px 10px;
+ }
+
+#profile-list li  {
+    display: flex;
+       margin-bottom: 10px;
+    }
+
+.btn_submit {
+    background-color: olivedrab;
+    color: white;
+    border: none;
+    height: 2.5rem;
+    width: 30%;
+    border-radius: 8px;
+}
+
+.btn_cancel {
+    background-color: transparent;
+    text-decoration: none;
+    color: black;
+    border: thin solid black;
+    /*height: 2.1rem;*/
+    width: 30%;
+    border-radius: 8px;
+    min-width: 90px;
+    padding: 8px 25px;
+}
+
+.btn_submit:hover {
+    background-color: darkolivegreen;
+}
+
+.btn_cancel:hover {
+    background-color: black;
+    color: white;
+}
+
+.icon {
+  padding: 10px;
+  background: gray;
+  color: white;
+  min-width: 50px;
+  text-align: center;
+}

@@ -1,0 +1,30 @@
+
+
+h5 {
+    margin: 2rem 2rem 1rem 2rem;
+    color: ivory;
+}
+
+#go-back {
+    margin-bottom: 2rem !important;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    }
+
+.item-position {
+    text-align: left;
+    padding-left: 15px !important;
+   }
+
+.table-color {
+    background-color: whitesmoke !important;
+    font: 1rem "Montserrat", serif;
+}
+
+.head-color,.summary-color {
+    background-color: lightcyan;
+    font-weight: bold;
+}

@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" type="text/css" href="{% static "css/foods_by_category.css" %}">
+{% endblock styles %}
+
+{% block title %}
+      {{ logo_name }} Items by Category
+{% endblock title %}
+
+
+{% block content %}
+    {% if foods %}
+        <h5>Category {{ category }} - page {{ page_obj.number }}</h5>
+    {% else %}
+        <h2>No items in {{ category }} category</h2>
+    {% endif %}
+
+    <div id="go-back">
+        <a class="btn btn-outline-dark " href="{% url 'home' %}">&#x2190; Go back</a>
+    </div>
+
+    <div class="row">
+        {% for food in foods %}
+
+            <div class="col-md mb-3 me-3">
+                <div class="card mb-4">
+                    {% if food.image %}
+                        <img class="card-img-top h-50" src="{{ food.image.url }}" alt="food image">
+                    {% else %}
+                        <img class="card-img-top h-50" src="{% static 'images/placeholder.jpg' %}" alt="food image">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ food.title|truncatechars:20 }}</h5>
+                        <p class="card-text">{{ food.description|truncatechars:50 }}</p>
+                        <p class="card-price">{{ food.price|floatformat:2 }}€</p>
+
+                        <a href="{% url 'food details' food.pk %}"
+                           class="card-link stretched-link">
+                        </a>
+{#                        button Add#}
+                        <a href="{% url 'order_item add' %}?food={{ food.pk }}"
+                           class="card-add-button stretched-link" style="position: relative;">
+                            +</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    {# Pagination #}
+    {% if foods %}
+
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center fixed-pagination-bottom">
+
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link"
+                           href="?page={{ page_obj.previous_page_number }}&category={{ category.id }}">
+                            &laquo;</a></li>
+                {% endif %}
+
+                {% for p in page_obj.paginator.page_range %}
+                    <li class="page-item">
+                        <a class="page-link"
+                                             href="?page={{ forloop.counter }}&category={{ category.id }}">
+                        {{ forloop.counter }}
+                         </a>
+                    </li>
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link"
+                             href="?page={{ page_obj.next_page_number }}&category={{ category.id }}">
+                             &raquo;
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    {% endif %}
+{% endblock content %}
+

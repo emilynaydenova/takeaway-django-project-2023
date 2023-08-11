@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Takeaway Register
+{% endblock title %}
+
+
+{% block content %}
+
+    <div class="container mb-5">
+        <h1 class="text-center">REGISTER ACCOUNT</h1>
+
+        <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6">
+                <!-- Register Form -->
+                <fieldset>
+                    <form method="POST" action="{% url 'register' %}">
+                        {% csrf_token %}
+
+                        <div class="input-group mb-2">
+                <span class="input-group-text">
+                  <i class="fa-regular fa-envelope"></i></span>
+                            {{ form.email }}
+                        </div>
+                        <div class="input-group mb-2">
+                             <span class="input-group-text">
+                 <i class="fa-regular fa-key"></i></span>
+                            {{ form.password1 }}
+                        </div>
+                        <div class="input-group mb-2">
+                            <span class="input-group-text">
+                    <i class="fa-regular fa-key"></i></span>
+                            {{ form.password2 }}
+                        </div>
+                        <button class="btn btn-primary mt-2" type="submit">Register Account</button>
+                    </form>
+
+                </fieldset>
+                <!-- End Register Form -->
+            </div>
+        </div>
+        <div class="mt-4">
+            <div class="d-flex justify-content-center links">
+                Already have an account?
+                <a href="{% url 'login' %}" class="ml-2"><h5>&nbsp;Login&nbsp;</h5></a>
+            </div>
+        </div>
+
+    </div>
+{% endblock content %}

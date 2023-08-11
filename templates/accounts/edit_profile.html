@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" type="text/css" href="{% static "css/edit_profile.css" %}">
+
+    {#    https://dev.to/shantanu_jana/how-to-preview-image-before-uploading-in-javascript-1f6g#}
+    <script>
+        function showPreview(event) {
+            if (event.target.files.length > 0) {
+                var src = URL.createObjectURL(event.target.files[0]);
+                var preview = document.getElementById("file-ip-1-preview");
+                preview.src = src;
+                preview.style.display = "block";
+            }
+        }
+    </script>
+
+{% endblock styles %}
+
+{% block title %}
+    Takeaway Edit Profile
+{% endblock title %}
+
+
+{% block content %}
+    <div id="profile">
+        <h2>PROFILE</h2>
+        <h5>{{ request.user }}</h5>
+
+
+        {% if profile.image %}
+            <img id="file-ip-1-preview" class="profile-image" src="{{ profile.image.url }}" alt="Profile image">
+        {% else %}
+            <img id="file-ip-1-preview" class="profile-image" src="{% static 'images/profile-placeholder.png' %}"
+                 alt="Profile image">
+        {% endif %}
+
+        <form method="POST" action="{% url 'edit profile' request.user.pk %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="profile-file">
+                {#                <li>{{ form.image }}</li>#}
+                <label for="file-ip-1">Upload Image: </label>
+                <input name="image" type="file" id="file-ip-1" accept="image/*" onchange="showPreview(event);">
+            </div>
+
+            <div class="input-group mb-2">
+                     <span class="input-group-text">
+                                <i class="fa-regular fa-circle-user"></i></span>
+                {{ form.first_name }}
+            </div>
+            <div class="input-group mb-2">
+                     <span class="input-group-text">
+                                <i class="fa-solid fa-circle-user"></i></span>
+                {{ form.last_name }}
+            </div>
+            <div class="input-group mb-2">
+                     <span class="input-group-text">
+                                <i class="fa-solid fa-square-phone"></i></span>
+                {{ form.phone }}
+            </div>
+
+{#            <ul id="profile-list">#}
+{#                <li><i class="icon bi bi-person-circle"></i>{{ form.first_name }}</li>#}
+{#                <li><i class="icon bi bi-person-fill"></i>{{ form.last_name }}</li>#}
+{#                <li><i class="icon bi bi-telephone-fill"></i>{{ form.phone }}</li>#}
+{#            </ul>#}
+
+            <div>
+                <a class="btn_cancel" href="{% url 'home' %}">&#x2190; Cancel</a>
+                <button class="btn_submit" type="submit">Submit</button>
+            </div>
+        </form>
+
+    </div>
+{% endblock content %}
