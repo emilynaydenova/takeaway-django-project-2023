@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     # 3rd party applications
     "phonenumber_field",
     'fontawesomefree',
+    'storages',  # django-storages - S3
 
     # projects' applications
     'app.apps.AppConfig',
@@ -186,9 +187,9 @@ if config('USE_S3') == 'True':
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
 
 else:
-    # Base url to serve media files
+    # MEDIA_URL is the URL we can use in our templates for the files
     MEDIA_URL = 'media/'
-    # Path where media is stored
+    # MEDIA_ROOT is the absolute filesystem path to the directory for user-uploaded files
     MEDIA_ROOT = BASE_DIR / 'media/'
 
 

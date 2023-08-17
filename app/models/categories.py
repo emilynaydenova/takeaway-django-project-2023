@@ -1,5 +1,4 @@
 from django.db import models
-
 from app.models.model_choices import CATEGORY_CHOICES, SALAD
 
 
@@ -12,7 +11,7 @@ class Category(models.Model):
     )
 
     image = models.ImageField(
-        upload_to="categories_pics",
+        upload_to="categories_pics",  # The location of the uploaded image will be in MEDIA_ROOT/images
         verbose_name="Category picture",
         blank=True,
         null=True,
