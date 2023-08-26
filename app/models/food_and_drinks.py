@@ -20,7 +20,10 @@ class FoodAndDrinks(models.Model):
         upload_to="food_and_drinks_pics", blank=True, null=True, verbose_name="Picture"
     )
 
-    price = models.DecimalField(max_digits=5, decimal_places=2, default=0.0)
+    price = models.DecimalField(
+        max_digits=5,
+        decimal_places=2,
+        default=0.0)
 
     is_active = models.BooleanField(default=False)
 
