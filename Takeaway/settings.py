@@ -106,7 +106,7 @@ DATABASES = {
 }
 
 #
-# # Redis Cache - to start: redis-server
+# Redis Cache - to start: redis-server
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.redis.RedisCache',
@@ -202,9 +202,9 @@ else:
     MEDIA_ROOT = BASE_DIR / 'media/'
 
 
-# Django Gmail SMTP Configurations
+# Django SMTP Configurations
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST = config('EMAIL_HOST')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = 'True'
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
@@ -229,6 +229,14 @@ LOGGING = {
             'style': '{',
         },
     },
+    'filters': {
+            'require_debug_false': {
+                '()': 'django.utils.log.RequireDebugFalse',
+            },
+            'require_debug_true': {
+                '()': 'django.utils.log.RequireDebugTrue',
+            },
+    },
 
     'handlers': {
         'console': {
@@ -242,6 +250,11 @@ LOGGING = {
             'filename': 'general.log',
             'formatter': 'simple',
         },
+        'mail_admins': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler',
+            'filters': ['require_debug_false']
+        }
     },
 
     'root': {

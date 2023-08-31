@@ -10,6 +10,7 @@ UserModel = get_user_model()
 
 @shared_task
 def send_registration_email(user_pk):
+    print("Sending registration email")
     user = UserModel.objects.get(pk=user_pk)
     subject = f"Register in {config('LOGO_NAME')}"
 

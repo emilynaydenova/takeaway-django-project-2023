@@ -37,4 +37,4 @@ class CheckoutOrderForm(forms.ModelForm):
     def clean(self):
         #  Order status changed to Pending
         self.cleaned_data["status"] = PENDING
-        send_mail_for_pending_order.delay(self.instance.pk)
+        # send_mail_for_pending_order.delay(self.instance.pk)

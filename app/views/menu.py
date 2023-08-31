@@ -5,7 +5,9 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, ListView, DetailView
 
+from Takeaway.celery import get_celery_worker_status, is_celery_working
 from app.models import Category, FoodAndDrinks
+
 from services.rapid_api.weather import CurrentWeatherService
 
 
@@ -20,21 +22,6 @@ class IndexView(ListView):
     context_object_name = "categories"
     ordering = ("title",)
 
-    # context
-    # def get_context_data(self, **kwargs):  # from ContextMixin
-    #     context = super().get_context_data(**kwargs)
-    #     weather = CurrentWeatherService()
-    #     weather_resp = weather.get_weather()
-    #     weather_dict = json.loads(weather_resp)
-    #     print(weather_dict)
-    #
-    #     context['weather_town'] = weather_dict['name']
-    #     fahrenheit = weather_dict['main']['temp']
-    #     celsius = (fahrenheit - 32) * 5/9
-    #     context['weather_temp'] = round(celsius)
-    #
-    #     context['weather_today'] = weather_resp
-    #     return context
 
 class FoodsByCategoryListView(ListView):
     NUMBER_PER_PAGE = 4
