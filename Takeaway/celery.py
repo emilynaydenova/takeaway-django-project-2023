@@ -4,7 +4,6 @@ import os
 from celery import Celery
 
 
-
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Takeaway.settings')
 # make Celery instance
 app = Celery('Takeaway', include=['app.tasks', 'accounts.tasks', ])

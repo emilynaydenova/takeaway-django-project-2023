@@ -24,14 +24,14 @@
         <div class="row">
             <div class="col-md-4 ">
                 <img src="{% static 'images/Chef.gif' %}" class="img-fluid rounded-circle"
-                     style="border-bottom: 2rem solid gray;" alt="food image">
+                     style="border-bottom: 2rem solid grey;" alt="food image">
             </div>
             <div class="col-md-8">
                 <p class="card-body">
                     <h5 class="card-title">Your order is placed</h5>
                     <p class="card-text">Items: {{ order.get_order_items_quantity }} </p>
                     <p class="card-text">Total: {{ order.get_order_total|floatformat:2 }}€</p>
-                   {% if not delivery %}
+                   {% if  delivery %}
                         <h5>We will deliver the order to:</h5>
                         <p>Address: {{ delivery.address }}</p>
                         <p>City: {{ delivery.city }}</p>

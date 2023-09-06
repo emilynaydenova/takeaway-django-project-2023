@@ -25,5 +25,6 @@ def send_mail_for_pending_order(order_pk):
     order = Order.objects.get(pk=order_pk)
 
     from_email = settings.EMAIL_HOST_USER
-    recipient_list = [order.user]
-    # send_mail(subject, message, from_email, recipient_list, fail_silently=False)
+    recipient_list = [order.user,]
+    send_mail(subject, message, from_email, recipient_list, fail_silently=False)
+

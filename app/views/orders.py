@@ -13,7 +13,7 @@ from django.views.generic import (
 
 from ..forms import CheckoutOrderForm, DeliveringInfoForm
 from ..models import FoodAndDrinks
-from ..models.model_choices import NEW, PENDING
+from ..models.model_choices import NEW, DELIVERY
 from ..models.orders import Order, DeliveringInfo, OrderItem
 
 logging.basicConfig(level=logging.DEBUG)
@@ -64,7 +64,8 @@ class OrderCheckoutView(LoginRequiredMixin, UpdateView):
 
     def get_success_url(self):
         # Home Delivery
-        if self.object.delivery == PENDING:
+
+        if self.object.delivery == DELIVERY:
             delivery = DeliveringInfo.objects.create(
                 user=self.request.user,
                 order=self.object,
